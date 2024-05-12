@@ -2,11 +2,11 @@
 Goes through Chrome Tabs for YouTube instances and writes their title into a .txt file for it to be read from streaming applications.
 
 ## Requirements
-...that may have working alternatives:
+> ...that may have working alternatives:
 - NPM (`npm install -g npm` inside a terminal, i.e. `cmd` in windows)
 - Node (executable [here](https://nodejs.org/en/download/))
 - Windows
-...that are necessary:
+> ...that are necessary:
 - Google Chrome
 
 ## Setup
