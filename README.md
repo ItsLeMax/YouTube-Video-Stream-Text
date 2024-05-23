@@ -1,5 +1,5 @@
 # YouTube-Music-Stream-Display
-Goes through Chrome Tabs for YouTube instances and writes their title into a .txt file for it to be read from streaming applications.
+Searches Chrome Tabs for YouTube instances and writes their title into a .txt file for it to be read from a streaming software
 
 ## Requirements
 > ...that may have working alternatives:
