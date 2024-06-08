@@ -4,7 +4,6 @@ Searches Chrome Tabs for YouTube instances, writes their title and author into *
 
 ## Requirements
 > ...that may have working alternatives:
-- NPM (`npm install -g npm` inside a terminal, i.e. `cmd` in windows)
 - Node (executable [here](https://nodejs.org/en/download/))
 - Windows
 > ...that are necessary:
