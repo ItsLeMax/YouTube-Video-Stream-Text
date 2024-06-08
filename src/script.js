@@ -56,10 +56,11 @@ try {
             if (!result.result.value) return;
             if (!fs.existsSync("../data")) fs.mkdirSync("../data");
 
-            let { title } = result.result.value;
-            const { author, thumbnail } = result.result.value;
+            let { title, author } = result.result.value;
+            const { thumbnail } = result.result.value;
 
             if (title.length > variables.limit) title = title.slice(0, variables.limit) + "...";
+            if (author.length > variables.limit) author = author.slice(0, variables.limit) + "...";
             if (variables.cache == title) return;
 
             variables.cache = title;
