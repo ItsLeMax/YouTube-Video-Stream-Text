@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const variables = {
     resetColor: "\x1b[0m",
-    limit: 75,
+    limit: require("./config.json").maximum,
     cache: null
 };
 
