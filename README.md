@@ -12,7 +12,7 @@ Searches Chrome Tabs for YouTube instances and writes their title into a .txt fi
 
 ## Setup
 1. Download this source code by clicking on `<> Code` and `Download ZIP`\
-![download](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/f26c562e-491b-410d-ab42-a6722476864c)
+![download](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/883af1c1-5670-4325-88b3-24452ebc5acb)
 2. (Extract the content and) open the root folder and inside it the terminal\
 (typing `cmd` inside the file explorer path works) and execute `npm i`\
 ![cmd](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/7334f1ee-197e-46e2-8909-2ea95e83f9f6)
