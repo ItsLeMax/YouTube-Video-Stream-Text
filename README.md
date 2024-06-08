@@ -1,4 +1,4 @@
-# YouTube Music Stream Display
+# YouTube Video Stream Text
 Searches Chrome Tabs for YouTube instances and writes their title into a .txt file for it to be read from a streaming software
 
 ## Requirements
