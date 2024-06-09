@@ -23,5 +23,5 @@ You may use `Text (GDI+)` for title and author and `Image` for the thumbnail. Af
 > Please note, that text elements need to have `Read from file` checked first.\
 ![read](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/10bc5f08-952a-406d-a877-06a59a3a2e84)
 
-> [!TIP]
+> [!IMPORTANT]
 > You currently may need to update the program regularly, depending on how often the web design of YouTube changes. A long-time solution is in development.
