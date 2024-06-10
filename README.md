@@ -23,5 +23,6 @@ You may use `Text (GDI+)` for title and author and `Image` for the thumbnail. Af
 > Please note, that text elements need to have `Read from file` checked first.\
 ![read](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/10bc5f08-952a-406d-a877-06a59a3a2e84)
 
-### Error [ERR_UNKNOWN_BUILTIN_MODULE]: No such built-in module: node:readline/promises
+## Known Errors
+- `Error [ERR_UNKNOWN_BUILTIN_MODULE]: No such built-in module: node:readline/promises`\
 This error occurs if your node version is not up to date. You can update it using the installer [here](https://nodejs.org/en/download/). If newer versions also throw this error, you may use `v22.2.0`.
