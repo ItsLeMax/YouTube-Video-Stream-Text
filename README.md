@@ -15,7 +15,7 @@ Searches Chrome Tabs for YouTube instances, writes their title and author into *
 2. (Extract the content and) open the root folder and inside it the terminal\
 (typing `cmd` inside the file explorer path works) and execute `npm i`\
 ![cmd](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/7334f1ee-197e-46e2-8909-2ea95e83f9f6)
-3. Run `execute.cmd` and follow the guide
+3. Run `start-chrome.bat` first, `run-script.cmd` right after and follow the guide
 4. Open your broadcasting software and import the files inside `/data` as needed.
 > Inside OBS, you can create an element by right clicking in sources and clicking on `add`.\
 You may use `Text (GDI+)` for title and author and `Image` for the thumbnail. After entering a unique name, you need to click on `Browse` and navigate to the downloaded code and `/data/` and select the file you desire.\
@@ -23,5 +23,5 @@ You may use `Text (GDI+)` for title and author and `Image` for the thumbnail. Af
 > Please note, that text elements need to have `Read from file` checked first.\
 ![read](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/10bc5f08-952a-406d-a877-06a59a3a2e84)
 
-> [!IMPORTANT]
-> You currently may need to update the program regularly, depending on how often the web design of YouTube changes. A long-time solution is in development.
+### Error [ERR_UNKNOWN_BUILTIN_MODULE]: No such built-in module: node:readline/promises
+This error occurs if your node version is not up to date. You can update it using the installer [here](https://nodejs.org/en/download/). If newer versions also throw this error, you may use `v22.2.0`.

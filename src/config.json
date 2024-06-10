@@ -1,3 +1,4 @@
 {
-    "maximum": 60
+    "maximumTextLength": 60,
+    "updateInterval": 500
 }

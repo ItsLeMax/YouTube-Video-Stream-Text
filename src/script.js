@@ -1,17 +1,52 @@
+const readline = require("node:readline/promises");
+const { stdin, stdout } = require("node:process");
 const CDP = require('chrome-remote-interface');
+const config = require("./config.json");
 const axios = require("axios");
 const fs = require('fs');
 
 const variables = {
-    resetColor: "\x1b[0m",
-    limit: require("./config.json").maximum,
-    cache: null
+    success: "\x1b[32m",
+    reset: "\x1b[0m",
+    cache: null,
+    test: false,
+    queries: "./queries.json",
+    limit: config.maximumTextLength
 };
 
 try {
     (async () => {
+        if (!fs.existsSync(variables.queries)) {
+            fs.writeFileSync(variables.queries, JSON.stringify(new Object));
+        }
+
+        let queries = require(variables.queries);
+        const { data: latestQueries } = await axios.get(variables.test ? "http://localhost:3000/yvst" : "http://fpm-studio.de:3000/yvst");
+
+        if (latestQueries.title != queries.title || latestQueries.author != queries.author) {
+            const readLine = readline.createInterface({
+                input: stdin,
+                output: stdout
+            });
+
+            const answer = await readLine.question(
+                "The queries are outdated or do not exist. An update is important. Do you want to update?" + "\n" +
+                "Die Queries sind veraltet oder inexistent. Ein Update ist wichtig. Möchtest du aktualisieren?" + "\n" +
+                "< 1 (yes) | 0 (no) >: ",
+            );
+
+            if (answer.trim() == "1") {
+                console.log(variables.success + "Update successful! | Update erfolgreich!" + "\n");
+                fs.writeFileSync("queries.json", JSON.stringify(latestQueries, null, "\t"));
+                queries = latestQueries;
+            } else {
+                console.log("\x1b[33m" + "Update ignored. | Update ignoriert." + "\n");
+            }
+            readLine.close();
+        }
+
         console.log(
-            "\x1b[32m" +
+            variables.success +
             "The program has loaded. " +
             "If a YouTube tab is open its title, author and thumbnail will be saved in \"/data/\". " +
             "It can be imported as text/image inside the streaming software. " +
@@ -20,7 +55,7 @@ try {
             "Sollte ein YouTube-Fenster offen sein, wird dessen Titel, Author und Thumbnail in \"/data/\" gespeichert. " +
             "Diese kann über die eigene Streamingsoftware als Text/Bild importiert werden. " +
             "Sollte der Bedarf enden, kann die Konsole problemlos geschlossen werden." +
-            variables.resetColor
+            variables.reset
         );
 
         setInterval(async () => {
@@ -45,8 +80,8 @@ try {
 
             const result = await tabClient.Runtime.evaluate({
                 expression: `(() => {
-                    const title = document.querySelector('#below #title h1').innerText;
-                    const author = document.querySelector('#upload-info a').innerText;
+                    const title = document.querySelector('${queries.title}').innerText;
+                    const author = document.querySelector('${queries.author}').innerText;
                     const thumbnail = window.location.href.split('?v=').join('&').split('&')[1];
                     return { title, author, thumbnail };
                 })();`,
@@ -71,9 +106,9 @@ try {
 
             const response = await axios.get(`https://i.ytimg.com/vi/${thumbnail}/maxresdefault.jpg`, { responseType: 'arraybuffer' });
             fs.writeFileSync(`../data/thumbnail.${`${response.headers['content-type'].split('/')[1]}`}`, response.data);
-        }, 1000);
+        }, config.updateInterval);
     })()
 } catch (error) {
-    console.error("\x1b[31m" + "An error occured.", "Ein Fehler ist aufgetreten." + variables.resetColor + "\n" + error);
+    console.error("\x1b[31m" + "An error occured.", "Ein Fehler ist aufgetreten." + variables.reset + "\n" + error);
     process.exit();
 }
