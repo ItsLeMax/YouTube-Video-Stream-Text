@@ -101,11 +101,11 @@ try {
             variables.cache = title;
             console.log(`Update: ${title} <> ${author} <> ${thumbnail}`);
 
-            fs.writeFileSync(`../data/title.txt`, title);
-            fs.writeFileSync(`../data/author.txt`, author);
-
             const response = await axios.get(`https://i.ytimg.com/vi/${thumbnail}/maxresdefault.jpg`, { responseType: 'arraybuffer' });
-            fs.writeFileSync(`../data/thumbnail.${`${response.headers['content-type'].split('/')[1]}`}`, response.data);
+            fs.writeFile(`../data/thumbnail.${`${response.headers['content-type'].split('/')[1]}`}`, response.data, () => { });
+
+            fs.writeFile(`../data/title.txt`, title, () => { });
+            fs.writeFile(`../data/author.txt`, author, () => { });
         }, config.updateInterval);
     })()
 } catch (error) {
