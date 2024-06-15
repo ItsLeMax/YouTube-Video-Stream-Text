@@ -26,12 +26,12 @@ Feel free to resize the elements as needed.
 
 ### Option 1: Using the text files and image file to create a custom overlay
 You may use `Text (GDI+)` for `title.txt` and `author.txt` and `Image` for `thumbnail.jpeg`.
-> Please note, that text elements need to have `Read from file` checked first.
+> Please note, that text elements need to have `Read from file` checked first.\
 ![read](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/a2781753-90c7-4062-be5c-0f4c15232995)
 
 ### Option 2: Using the prebuilt HTML overlay
 Create a `Browser` element instead.
-> Using this option is recommended since it has a script that disables the entire overlay as long as no song is playing.
+> Using this option is recommended since it has a script that disables the entire overlay as long as no song is playing.\
 ![v4 0](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/fec15f65-bfd7-4675-b681-8afbb7158eb7)
 
 ## Known Errors and how to fix them
