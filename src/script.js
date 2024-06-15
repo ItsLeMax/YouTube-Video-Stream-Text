@@ -1,7 +1,7 @@
 const readline = require("node:readline/promises");
 const { stdin, stdout } = require("node:process");
 const CDP = require('chrome-remote-interface');
-const config = require("./config.json");
+const config = require("../run/config.json");
 const axios = require("axios");
 const fs = require('fs');
 

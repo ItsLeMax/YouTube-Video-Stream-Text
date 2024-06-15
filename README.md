@@ -15,14 +15,25 @@ Searches Chrome Tabs for YouTube instances, writes their title and author into *
 2. (Extract the content and) open the root folder and inside it the terminal\
 (typing `cmd` inside the file explorer path works) and execute `npm i`\
 ![cmd](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/7334f1ee-197e-46e2-8909-2ea95e83f9f6)
-3. Run `start-chrome.bat` first, `run-script.cmd` right after and follow the guide
-4. Open your broadcasting software and import the files inside `/data` as needed.
-> Inside OBS, you can create an element by right clicking in sources and clicking on `add`.\
-You may use `Text (GDI+)` for title and author and `Image` for the thumbnail. After entering a unique name, you need to click on `Browse` and navigate to the downloaded code and `/data/` and select the file you desire.\
-![browse](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/14256f1c-9139-4e28-819f-9b2ab617a3c9)\
-> Please note, that text elements need to have `Read from file` checked first.\
-![read](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/10bc5f08-952a-406d-a877-06a59a3a2e84)
+3. (Optional) Open `/run/config.json` and change some settings that you want to change.
+4. Run `start-chrome.bat` inside `/run/` first, `run-script.cmd` right after and follow the guide
+5. Open your broadcasting software and import the files inside `/data/` as needed.
 
-## Known Errors
+### Step 5 detailed
+Inside OBS, you can create an element by right clicking in sources and clicking on `add`. After entering a unique name, you need to click on `Browse` and navigate to the downloaded code and `/data/` and select the file you desire.\
+![browse](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/d880de97-6c9a-4756-88ee-1095b1dc1478)\
+Feel free to resize the elements as needed.
+
+### Option 1: Using the text files and image file to create a custom overlay
+You may use `Text (GDI+)` for `title.txt` and `author.txt` and `Image` for `thumbnail.jpeg`.
+> Please note, that text elements need to have `Read from file` checked first.
+![read](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/a2781753-90c7-4062-be5c-0f4c15232995)
+
+### Option 2: Using the prebuilt HTML overlay
+Create a `Browser` element instead.
+> Using this option is recommended since it has a script that disables the entire overlay as long as no song is playing.
+![v4 0](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/fec15f65-bfd7-4675-b681-8afbb7158eb7)
+
+## Known Errors and how to fix them
 - `Error [ERR_UNKNOWN_BUILTIN_MODULE]: No such built-in module: node:readline/promises`\
 This error occurs if your node version is not up to date. You can update it using the installer [here](https://nodejs.org/en/download/). If newer versions also throw this error, you may use `v22.2.0`.
