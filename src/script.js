@@ -44,7 +44,7 @@ const paths = {
 
         if (answer.trim() == "1") {
             console.log(colors.success + "Update successful! | Update erfolgreich!" + "\n");
-            fs.writeFileSync("queries.json", JSON.stringify(latestQueries, null, "\t"));
+            fs.writeFileSync(paths.queries, JSON.stringify(latestQueries, null, "\t"));
             queries = latestQueries;
         } else {
             console.warn(colors.warn + "Update ignored. | Update ignoriert." + "\n");
@@ -108,6 +108,12 @@ const paths = {
 
         if (title.length > values.limit) title = title.slice(0, values.limit) + "...";
         if (author.length > values.limit) author = author.slice(0, values.limit) + "...";
+
+        if (config.prependSpaceForOBS) {
+            title = " " + title;
+            author = " " + author;
+        }
+
         if (values.cache == title) return;
 
         values.cache = title;
@@ -136,8 +142,8 @@ const paths = {
 
         console.log(
             "======================================================================================" + "\n" +
-            `Title | Titel          ${title}` + "\n" +
-            `Author                 ${author}` + "\n" +
+            `Title | Titel       ${!config.prependSpaceForOBS ? " " : ""}  ${title}` + "\n" +
+            `Author              ${!config.prependSpaceForOBS ? " " : ""}  ${author}` + "\n" +
             `Quality | Qualität     ${(highResHeader ? "MAXRES" : "HQ")}` + "\n" +
             `URL Value | URL-Wert   ${thumbnail}`
         );

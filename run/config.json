@@ -1,4 +1,5 @@
 {
     "maximumTextLength": 60,
-    "updateInterval": 500
+    "updateInterval": 500,
+    "prependSpaceForOBS": true
 }
