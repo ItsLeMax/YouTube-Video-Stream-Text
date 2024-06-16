@@ -18,8 +18,8 @@ const colors = {
 };
 
 const paths = {
-    queries: "./queries.json",
-    data: "../data"
+    data: "../data",
+    queries: "../src/queries.json"
 };
 
 (async () => {
