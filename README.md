@@ -15,7 +15,7 @@ Searches Chrome Tabs for YouTube instances, writes their title and author into *
 2. (Extract the content and) open the root folder and inside it the terminal\
 (typing `cmd` inside the file explorer path works) and execute `npm i`\
 ![cmd](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/7334f1ee-197e-46e2-8909-2ea95e83f9f6)
-3. (Optional) Open `/run/config.json` and change some settings that you want to change\
+3. (Optional) Open `/run/config.json` and change some settings that you want to change
 > `prependSpaceForOBS` adds a space in front of title and author to compensate the spacing at the end of text elements.\
 ![prependSpaceForOBS](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/f4e7f163-a664-4c4d-abe5-fd32b89596f3)
 4. Run `start-chrome.bat` inside `/run/` first, `run-script.cmd` right after and follow the guide
