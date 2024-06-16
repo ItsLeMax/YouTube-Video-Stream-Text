@@ -20,19 +20,13 @@ Searches Chrome Tabs for YouTube instances, writes their title and author into *
 5. Open your broadcasting software and import the files inside `/data/` as needed.
 
 ### Step 5 detailed
-Inside OBS, you can create an element by right clicking in sources and clicking on `add`. After entering a unique name, you need to click on `Browse` and navigate to the downloaded code and `/data/` and select the file you desire.\
-![browse](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/d880de97-6c9a-4756-88ee-1095b1dc1478)\
-Feel free to resize the elements as needed.
-
-### Option 1: Using the text files and image file to create a custom overlay
-You may use `Text (GDI+)` for `title.txt` and `author.txt` and `Image` for `thumbnail.jpeg`.
+Inside OBS, you can create an element by right clicking in sources and clicking on `add`. You may use `Text (GDI+)` for `title.txt` and `author.txt` and `Image` for `thumbnail.jpeg`. After entering a unique name, you need to click on `Browse` and navigate to the downloaded code and `/data/` and select the file you desire. Feel free to resize the elements as needed.\
+![browse](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/d880de97-6c9a-4756-88ee-1095b1dc1478)
 > Please note, that text elements need to have `Read from file` checked first.\
 ![read](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/a2781753-90c7-4062-be5c-0f4c15232995)
 
-### Option 2: Using the prebuilt HTML overlay
-Create a `Browser` element instead.
-> Using this option is recommended since it has a script that disables the entire overlay as long as no song is playing.\
-![v4 0](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/fec15f65-bfd7-4675-b681-8afbb7158eb7)
+It is highly recommended to fixate the image size for the case that the script uses a low quality backup thumbnail. You can do so by right clicking the Image in sources, `Transform` and `Edit Transform...`. Set `Bounding Box Type` to `Stretch to bounds`, the `Bounding Box Size` to a size you want the image to always have and other settings that you'd like to use as seen in the image.\
+![v3 1](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/cfefa5e4-8727-4c98-91cb-9337d8c107f2)
 
 ## Known Errors and how to fix them
 - `Error [ERR_UNKNOWN_BUILTIN_MODULE]: No such built-in module: node:readline/promises`\

@@ -5,110 +5,143 @@ const config = require("../run/config.json");
 const axios = require("axios");
 const fs = require('fs');
 
-const variables = {
-    success: "\x1b[32m",
-    reset: "\x1b[0m",
+const values = {
     cache: null,
     test: false,
-    queries: "./queries.json",
     limit: config.maximumTextLength
 };
 
-try {
-    (async () => {
-        if (!fs.existsSync(variables.queries)) {
-            fs.writeFileSync(variables.queries, JSON.stringify(new Object));
-        }
+const colors = {
+    success: "\x1b[32m",
+    warn: "\x1b[33m",
+    reset: "\x1b[0m"
+};
 
-        let queries = require(variables.queries);
-        const { data: latestQueries } = await axios.get(variables.test ? "http://localhost:3000/yvst" : "http://fpm-studio.de:3000/yvst");
+const paths = {
+    queries: "./queries.json",
+    data: "../data"
+};
 
-        if (latestQueries.title != queries.title || latestQueries.author != queries.author) {
-            const readLine = readline.createInterface({
-                input: stdin,
-                output: stdout
-            });
+(async () => {
+    if (!fs.existsSync(paths.queries)) {
+        fs.writeFileSync(paths.queries, JSON.stringify(new Object));
+    }
 
-            const answer = await readLine.question(
-                "The queries are outdated or do not exist. An update is important. Do you want to update?" + "\n" +
-                "Die Queries sind veraltet oder inexistent. Ein Update ist wichtig. Möchtest du aktualisieren?" + "\n" +
-                "< 1 (yes) | 0 (no) >: ",
-            );
+    let queries = require(paths.queries);
+    const { data: latestQueries } = await axios.get(values.test ? "http://localhost:3000/yvst" : "http://fpm-studio.de:3000/yvst");
 
-            if (answer.trim() == "1") {
-                console.log(variables.success + "Update successful! | Update erfolgreich!" + "\n");
-                fs.writeFileSync("queries.json", JSON.stringify(latestQueries, null, "\t"));
-                queries = latestQueries;
-            } else {
-                console.log("\x1b[33m" + "Update ignored. | Update ignoriert." + "\n");
-            }
-            readLine.close();
-        }
+    if (latestQueries.title != queries.title || latestQueries.author != queries.author) {
+        const readLine = readline.createInterface({
+            input: stdin,
+            output: stdout
+        });
 
-        console.log(
-            variables.success +
-            "The program has loaded. " +
-            "If a YouTube tab is open its title, author and thumbnail will be saved in \"/data/\". " +
-            "It can be imported as text/image inside the streaming software. " +
-            "If you have enough feel free to close the command line." + "\n\n" +
-            "Das Programm wurde geladen. " +
-            "Sollte ein YouTube-Fenster offen sein, wird dessen Titel, Author und Thumbnail in \"/data/\" gespeichert. " +
-            "Diese kann über die eigene Streamingsoftware als Text/Bild importiert werden. " +
-            "Sollte der Bedarf enden, kann die Konsole problemlos geschlossen werden." +
-            variables.reset
+        const answer = await readLine.question(
+            "The queries are outdated or do not exist. An update is important. Do you want to update?" + "\n" +
+            "Die Queries sind veraltet oder inexistent. Ein Update ist wichtig. Möchtest du aktualisieren?" + "\n" +
+            "< 1 (yes) | 0 (no) >: ",
         );
 
-        setInterval(async () => {
-            const client = await CDP();
-            const { Target } = client;
+        if (answer.trim() == "1") {
+            console.log(colors.success + "Update successful! | Update erfolgreich!" + "\n");
+            fs.writeFileSync("queries.json", JSON.stringify(latestQueries, null, "\t"));
+            queries = latestQueries;
+        } else {
+            console.warn(colors.warn + "Update ignored. | Update ignoriert." + "\n");
+        }
+        readLine.close();
+    }
 
-            await client.Network.enable();
-            const youtube = (await Target.getTargets()).targetInfos.find(target => target.url.includes("https://www.youtube.com/watch"));
+    console.log(
+        colors.success +
+        "The program has loaded. " +
+        "If a YouTube tab is open its title, author and thumbnail will be saved in \"/data/\". " +
+        "It can be imported as text/image inside the streaming software. " +
+        "If you have enough feel free to close the command line." + "\n\n" +
+        "Das Programm wurde geladen. " +
+        "Sollte ein YouTube-Fenster offen sein, wird dessen Titel, Author und Thumbnail in \"/data/\" gespeichert. " +
+        "Diese kann über die eigene Streamingsoftware als Text/Bild importiert werden. " +
+        "Sollte der Bedarf enden, kann die Konsole problemlos geschlossen werden." +
+        colors.reset
+    );
 
-            if (!youtube) return;
+    setInterval(async () => {
+        const client = await CDP();
+        const { Target } = client;
 
-            await Target.attachToTarget({
-                targetId: youtube.targetId,
-                flatten: true
-            });
+        await client.Network.enable();
+        const youtube = (await Target.getTargets()).targetInfos.find(target => target.url.includes("https://www.youtube.com/watch"));
 
-            const tabClient = await CDP({
-                target: youtube.targetId
-            });
+        if (!youtube) {
+            for (const data of fs.readdirSync(paths.data)) {
+                fs.unlink(`${paths.data}/${data}`, () => { });
+            }
+            return;
+        }
 
-            await tabClient.Page.enable();
+        await Target.attachToTarget({
+            targetId: youtube.targetId,
+            flatten: true
+        });
 
-            const result = await tabClient.Runtime.evaluate({
-                expression: `(() => {
-                    const title = document.querySelector('${queries.title}').innerText;
-                    const author = document.querySelector('${queries.author}').innerText;
-                    const thumbnail = window.location.href.split('?v=').join('&').split('&')[1];
-                    return { title, author, thumbnail };
-                })();`,
-                returnByValue: true
-            });
+        const tabClient = await CDP({
+            target: youtube.targetId
+        });
 
-            if (!result.result.value) return;
-            if (!fs.existsSync("../data")) fs.mkdirSync("../data");
+        await tabClient.Page.enable();
 
-            let { title, author } = result.result.value;
-            const { thumbnail } = result.result.value;
+        const result = await tabClient.Runtime.evaluate({
+            expression: `(() => {
+                const title = document.querySelector('${queries.title}').innerText;
+                const author = document.querySelector('${queries.author}').innerText;
+                const thumbnail = window.location.href.split('?v=').join('&').split('&')[1];
+                return { title, author, thumbnail };
+            })();`,
+            returnByValue: true
+        });
 
-            if (title.length > variables.limit) title = title.slice(0, variables.limit) + "...";
-            if (author.length > variables.limit) author = author.slice(0, variables.limit) + "...";
-            if (variables.cache == title) return;
+        if (!result.result.value) return;
+        if (!fs.existsSync(paths.data)) fs.mkdirSync(paths.data);
 
-            variables.cache = title;
-            console.log(`Update: ${title} <> ${author} <> ${thumbnail}`);
+        let { title, author } = result.result.value;
+        const { thumbnail } = result.result.value;
 
-            fs.writeFile(`../data/title.txt`, title, () => { });
-            fs.writeFile(`../data/author.txt`, author, () => { });
+        if (title.length > values.limit) title = title.slice(0, values.limit) + "...";
+        if (author.length > values.limit) author = author.slice(0, values.limit) + "...";
+        if (values.cache == title) return;
 
-            const response = await axios.get(`https://i.ytimg.com/vi/${thumbnail}/maxresdefault.jpg`, { responseType: 'arraybuffer' });
-            fs.writeFile(`../data/thumbnail.${`${response.headers['content-type'].split('/')[1]}`}`, response.data, () => { });
-        }, config.updateInterval);
-    })()
-} catch (error) {
-    console.error("\x1b[31m" + "An error occured.", "Ein Fehler ist aufgetreten." + variables.reset + "\n" + error);
-    process.exit();
-}
+        values.cache = title;
+
+        fs.writeFile(`../data/title.txt`, title, () => { });
+        fs.writeFile(`../data/author.txt`, author, () => { });
+
+        const highResUrl = `https://i.ytimg.com/vi/${thumbnail}/maxresdefault.jpg`;
+        const lowResUrl = `http://i3.ytimg.com/vi/${thumbnail}/hqdefault.jpg`;
+
+        const highRes = await axios.get(highResUrl, { responseType: 'arraybuffer' }).catch(async () => { });
+        const lowRes = await axios.get(lowResUrl, { responseType: 'arraybuffer' }).catch(() => { });
+
+        if (!highRes && !lowRes) {
+            console.warn(
+                colors.warn +
+                `${highResUrl} - ${lowResUrl}` + "\n" +
+                `Thumbnail nowhere given, skipping... | Thumbnail nirgends gegeben, wird übersprungen...` +
+                colors.reset
+            );
+            return;
+        }
+
+        const highResHeader = highRes?.headers['content-type'].split('/')[1];
+        const lowResHeader = lowRes?.headers['content-type'].split('/')[1];
+
+        console.log(
+            "======================================================================================" + "\n" +
+            `Title | Titel          ${title}` + "\n" +
+            `Author                 ${author}` + "\n" +
+            `Quality | Qualität     ${(highResHeader ? "MAXRES" : "HQ")}` + "\n" +
+            `URL Value | URL-Wert   ${thumbnail}`
+        );
+
+        fs.writeFile(`${paths.data}/thumbnail.${`${highResHeader || lowResHeader}`}`, (highRes || lowRes).data, () => { });
+    }, config.updateInterval);
+})();
