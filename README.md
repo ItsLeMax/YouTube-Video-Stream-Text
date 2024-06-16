@@ -15,9 +15,11 @@ Searches Chrome Tabs for YouTube instances, writes their title and author into *
 2. (Extract the content and) open the root folder and inside it the terminal\
 (typing `cmd` inside the file explorer path works) and execute `npm i`\
 ![cmd](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/7334f1ee-197e-46e2-8909-2ea95e83f9f6)
-3. (Optional) Open `/run/config.json` and change some settings that you want to change.
+3. (Optional) Open `/run/config.json` and change some settings that you want to change\
+> `prependSpaceForOBS` adds a space in front of title and author to compensate the spacing at the end of text elements.\
+![prependSpaceForOBS](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/f4e7f163-a664-4c4d-abe5-fd32b89596f3)
 4. Run `start-chrome.bat` inside `/run/` first, `run-script.cmd` right after and follow the guide
-5. Open your broadcasting software and import the files inside `/data/` as needed.
+5. Open your broadcasting software and import the files inside `/data/` as needed
 
 ### Step 5 detailed
 Inside OBS, you can create an element by right clicking in sources and clicking on `add`. You may use `Text (GDI+)` for `title.txt` and `author.txt` and `Image` for `thumbnail.jpeg`. After entering a unique name, you need to click on `Browse` and navigate to the downloaded code and `/data/` and select the file you desire. Feel free to resize the elements as needed.\
@@ -25,7 +27,7 @@ Inside OBS, you can create an element by right clicking in sources and clicking 
 > Please note, that text elements need to have `Read from file` checked first.\
 ![read](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/a2781753-90c7-4062-be5c-0f4c15232995)
 
-It is highly recommended to fixate the image size for the case that the script uses a low quality backup thumbnail. You can do so by right clicking the Image in sources, `Transform` and `Edit Transform...`. Set `Bounding Box Type` to `Stretch to bounds`, the `Bounding Box Size` to a size you want the image to always have and other settings that you'd like to use as seen in the image.\
+It is highly recommended to fixate the image size for the case that the script uses a low quality backup thumbnail. You can do so by right clicking the Image in sources, hovering on `Transform` and clicking on `Edit Transform..`. Set `Bounding Box Type` to `Stretch to bounds`, the `Bounding Box Size` to a size you want the image to always have and other settings that you'd like to use as seen in the image.\
 ![v3 1](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/cfefa5e4-8727-4c98-91cb-9337d8c107f2)
 
 ## Known Errors and how to fix them
