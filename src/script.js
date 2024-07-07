@@ -49,6 +49,7 @@ const paths = {
         } else {
             console.warn(colors.warn + "Update ignored. | Update ignoriert." + "\n");
         }
+
         readLine.close();
     }
 
@@ -65,32 +66,19 @@ const paths = {
         colors.reset
     );
 
+    const client = await CDP();
+
     setInterval(async () => {
-        const client = await CDP();
-        const { Target } = client;
+        const youtube = (await client.Target.getTargets()).targetInfos.find(target => target.url.includes("https://www.youtube.com/watch"));
+        const dataFiles = fs.readdirSync(paths.data);
 
-        await client.Network.enable();
-        const youtube = (await Target.getTargets()).targetInfos.find(target => target.url.includes("https://www.youtube.com/watch"));
-
-        if (!youtube) {
-            for (const data of fs.readdirSync(paths.data)) {
-                fs.unlink(`${paths.data}/${data}`, () => { });
-            }
+        if (!youtube && dataFiles.length) {
+            console.log(colors.warn + "No YouTube Tab opened. Deleting cache... | Kein YouTube-Tab offen. Cache wird gelöscht..." + colors.reset);
+            deleteCache();
             return;
         }
 
-        await Target.attachToTarget({
-            targetId: youtube.targetId,
-            flatten: true
-        });
-
-        const tabClient = await CDP({
-            target: youtube.targetId
-        });
-
-        await tabClient.Page.enable();
-
-        const result = await tabClient.Runtime.evaluate({
+        const result = await client.Runtime.evaluate({
             expression: `(() => {
                 const title = document.querySelector('${queries.title}').innerText;
                 const author = document.querySelector('${queries.author}').innerText;
@@ -122,19 +110,17 @@ const paths = {
         fs.writeFile(`../data/author.txt`, author, () => { });
 
         const highResUrl = `https://i.ytimg.com/vi/${thumbnail}/maxresdefault.jpg`;
-        const lowResUrl = `http://i3.ytimg.com/vi/${thumbnail}/hqdefault.jpg`;
+        const lowResUrl = `https://img.youtube.com/vi/${thumbnail}/mqdefault.jpg`;
 
         const highRes = await axios.get(highResUrl, { responseType: 'arraybuffer' }).catch(async () => { });
         const lowRes = await axios.get(lowResUrl, { responseType: 'arraybuffer' }).catch(() => { });
 
         if (!highRes && !lowRes) {
-            console.warn(
-                colors.warn +
-                `${highResUrl} - ${lowResUrl}` + "\n" +
-                `Thumbnail nowhere given, skipping... | Thumbnail nirgends gegeben, wird übersprungen...` +
+            console.warn(colors.warn + `${highResUrl} - ${lowResUrl}` + "\n" +
+                `Thumbnail not found. | Thumbnail nicht gefunden.` +
                 colors.reset
             );
-            return;
+            return deleteCache();
         }
 
         const highResHeader = highRes?.headers['content-type'].split('/')[1];
@@ -144,10 +130,23 @@ const paths = {
             "======================================================================================" + "\n" +
             `Title | Titel       ${!config.prependSpaceForOBS ? " " : ""}  ${title}` + "\n" +
             `Author              ${!config.prependSpaceForOBS ? " " : ""}  ${author}` + "\n" +
-            `Quality | Qualität     ${(highResHeader ? "MAXRES" : "HQ")}` + "\n" +
+            `Quality | Qualität     ${(highResHeader ? "maxresdefault" : "mqdefault")}` + "\n" +
             `URL Value | URL-Wert   ${thumbnail}`
         );
 
         fs.writeFile(`${paths.data}/thumbnail.${`${highResHeader || lowResHeader}`}`, (highRes || lowRes).data, () => { });
     }, config.updateInterval);
+
+    /**
+     * @description
+     * Deletes the cache, the images and text files in this case
+     * 
+     * Löscht den Zwischenspeicher, die Bilder und Textdateien in diesem Fall
+     * @author ItsLeMax
+     */
+    function deleteCache() {
+        for (const data of dataFiles) {
+            fs.unlink(`${paths.data}/${data}`, () => { });
+        }
+    }
 })();

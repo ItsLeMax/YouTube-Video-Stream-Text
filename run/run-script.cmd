@@ -1,5 +1,7 @@
 @echo off
 
-node ../src/script.js
+:execute
+node --max-old-space-size=512 ../src/script.js
 
 pause
+goto execute
