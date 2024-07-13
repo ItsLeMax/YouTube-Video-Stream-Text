@@ -28,7 +28,7 @@ Inside OBS, you can create an element by right clicking in sources and clicking 
 ![read](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/a2781753-90c7-4062-be5c-0f4c15232995)
 
 ### Important
-It is highly recommended to fixate the image size for the case that the script uses a low quality backup thumbnail. You can do so by right clicking the Image in sources, hovering on `Transform` and clicking on `Edit Transform..`. Set `Bounding Box Type` to `Stretch to bounds`, the `Bounding Box Size` to a size you want the image to always have and other settings that you'd like to use as seen in the image.\
+It is highly recommended to fixate the image size for the case that the script uses a low quality backup thumbnail. You can do so by right clicking the Image in sources, hovering on `Transform` and clicking on `Edit Transform...` right after. Set `Bounding Box Type` to `Stretch to bounds`, the `Bounding Box Size` to a size you want the image to always have and other settings that you'd like to use as seen in the image.\
 ![v3 1](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/cfefa5e4-8727-4c98-91cb-9337d8c107f2)
 
 ## Known Errors and how to fix them
