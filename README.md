@@ -1,5 +1,5 @@
 # YouTube Video Stream Text
-Searches Chrome Tabs for YouTube instances, writes their title and author into *.txt files and saves the thumbnail as image, for them to be read from a streaming software\
+Saves title, author and thumbnail of YouTube videos using Chrome for stream overlays
 ![obs](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/5c6c2c65-1320-4976-8cc4-4a810ed3653c)
 
 ## Requirements
