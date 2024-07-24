@@ -10,7 +10,7 @@ Saves title, author and thumbnail of YouTube videos using Chrome for stream over
 - Google Chrome
 
 ## Setup
-1. Download the source code by clicking on `<> Code` & `Download ZIP` and extract the content\
+1. Download the source code by clicking on `<> Code` & `Download ZIP` and extract its content\
 ![download](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/883af1c1-5670-4325-88b3-24452ebc5acb)
 2. Open the root folder and inside it the terminal (typing `cmd` inside the file explorer path works)\
 and execute `npm i`\
