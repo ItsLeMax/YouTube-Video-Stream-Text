@@ -74,7 +74,7 @@ const paths = {
 
         if (!youtube && dataFiles.length) {
             console.log(colors.warn + "No YouTube Tab opened. Deleting cache... | Kein YouTube-Tab offen. Cache wird gelöscht..." + colors.reset);
-            deleteCache();
+            deleteCache(dataFiles);
             return;
         }
 
@@ -120,7 +120,7 @@ const paths = {
                 `Thumbnail not found. | Thumbnail nicht gefunden.` +
                 colors.reset
             );
-            return deleteCache();
+            return deleteCache(dataFiles);
         }
 
         const highResHeader = highRes?.headers['content-type'].split('/')[1];
@@ -142,9 +142,15 @@ const paths = {
      * Deletes the cache, the images and text files in this case
      * 
      * Löscht den Zwischenspeicher, die Bilder und Textdateien in diesem Fall
+     * 
+     * @param { String[] } dataFiles
+     * Data Files Directory Content
+     *
+     * Data-Dateien Ordnerinhalt
+     *
      * @author ItsLeMax
      */
-    function deleteCache() {
+    function deleteCache(dataFiles) {
         for (const data of dataFiles) {
             fs.unlink(`${paths.data}/${data}`, () => { });
         }
