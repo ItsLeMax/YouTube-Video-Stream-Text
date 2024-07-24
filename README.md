@@ -3,11 +3,11 @@ Saves title, author and thumbnail of YouTube videos using Chrome for stream over
 ![obs](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/5c6c2c65-1320-4976-8cc4-4a810ed3653c)
 
 ## Requirements
+> ...that are necessary:
+- Google Chrome
 > ...that may have working alternatives:
 - Node (executable [here](https://nodejs.org/en/download/))
 - Windows
-> ...that are necessary:
-- Google Chrome
 
 ## Setup
 1. Download the source code by clicking on `<> Code` & `Download ZIP` and extract its content\
