@@ -10,10 +10,9 @@ Saves title, author and thumbnail of YouTube videos using Chrome for stream over
 - Google Chrome
 
 ## Setup
-1. Download this source code by clicking on `<> Code` and `Download ZIP`\
+1. Download the source code by clicking on `<> Code` & `Download ZIP` and extract the content\
 ![download](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/883af1c1-5670-4325-88b3-24452ebc5acb)
-2. (Extract the content and) open the root folder and inside it the terminal\
-(typing `cmd` inside the file explorer path works) and execute `npm i`\
+2. Open the root folder and inside it the terminal (typing `cmd` inside the file explorer path works) and execute `npm i`\
 ![cmd](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/7334f1ee-197e-46e2-8909-2ea95e83f9f6)
 3. (Optional) Open `/run/config.json` and change some settings that you want to change
 > `prependSpaceForOBS` adds a space in front of title and author to compensate the spacing at the end of text elements.\
