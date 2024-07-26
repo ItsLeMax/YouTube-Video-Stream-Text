@@ -4,18 +4,18 @@ Saves title, author and thumbnail of YouTube videos using Chrome for stream over
 
 ## Requirements
 > ...that are necessary:
-- Google Chrome
+- [Google Chrome](https://www.google.com/chrome/de/download-chrome/)
 > ...that may have working alternatives:
-- Node (executable [here](https://nodejs.org/en/download/))
+- [Node](https://nodejs.org/en/download/prebuilt-installer)
 - Windows
 > ...that have working alternatives:
-- 7-Zip (executable [here](https://7-zip.de/download.html))
+- [7-Zip](https://7-zip.de/download.html)
 
 ## Setup
 1. Download the source code by clicking on `<> Code` & `Download ZIP` and extract its content\
 ![download](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/883af1c1-5670-4325-88b3-24452ebc5acb)
-2. Open the root folder and inside it the terminal (typing `cmd` inside the file explorer path works)\
-and execute `npm i`\
+2. Open the root folder and inside it the terminal\
+(typing `cmd` inside the file explorer path works) and execute `npm i`\
 ![cmd](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/7334f1ee-197e-46e2-8909-2ea95e83f9f6)
 3. (Optional) Open `/run/config.json` and change some settings that you want to change
 > `prependSpaceForOBS` adds a space in front of title and author to compensate the spacing at the end of text elements.\
@@ -35,4 +35,4 @@ It is highly recommended to fixate the image size for the case that the script u
 
 ## Known Errors and how to fix them
 - `Error [ERR_UNKNOWN_BUILTIN_MODULE]: No such built-in module: node:readline/promises`\
-This error occurs if your node version is not up to date. You can update it using the installer [here](https://nodejs.org/en/download/). If newer versions also throw this error, you may use `v22.2.0`.
+This error occurs if your node version is not up to date. You can update it using the installer [here](https://nodejs.org/en/download/prebuilt-installer). If newer versions also throw this error, you may use `v22.2.0`.
