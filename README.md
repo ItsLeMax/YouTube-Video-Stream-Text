@@ -40,7 +40,7 @@ Feel free to resize the elements as needed.
 ### Important
 
 It is highly recommended to fixate the image size for the case that the script uses a low quality backup thumbnail. You can do so by right clicking the Image in sources, hovering on `Transform` and clicking on `Edit Transform...` right after.\
-![1 1 0-transform](https://github.com/user-attachments/assets/d0454c29-4a75-4838-82ec-8d8cf81604a2)\
+![1 1 0-transform](https://github.com/user-attachments/assets/4e62aa0d-539a-4707-8ff6-48ae48bfd9ca)\
 Set `Bounding Box Type` to `Stretch to bounds`, the `Bounding Box Size` to a size you want the image to always have and other settings that you'd like to use as seen in the image.\
 ![1 1 0-stretch](https://github.com/user-attachments/assets/4f398779-a2e0-4547-80f5-3c752899e736)
 
