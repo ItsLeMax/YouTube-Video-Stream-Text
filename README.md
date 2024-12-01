@@ -15,17 +15,17 @@ Saves title, author and thumbnail of YouTube videos using Chrome for stream over
 
 ## Setup
 
-1. Download the source code by clicking on `<> Code` & `Download ZIP` and extract its content\
+1. Download the source code by clicking on `<> Code` & `Download ZIP` and extract its content.\
 ![download](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/883af1c1-5670-4325-88b3-24452ebc5acb)
-2. Open the root folder and inside it the terminal (typing `cmd` inside the file explorer path works) and execute `npm i`\
+2. Open the root folder and inside it the terminal (typing `cmd` inside the file explorer path works) and execute `npm i`.\
 ![cmd](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/7334f1ee-197e-46e2-8909-2ea95e83f9f6)\
 ![npm](https://github.com/user-attachments/assets/25b67d93-759a-4ce7-875b-364aac09dcbd)
-3. (Optional) Open `/run/config.json` and change some settings that you want to change
+3. (Optional) Open `/run/config.json` and change some settings that you want to change.
 ![1 3 0-obs_prepend](https://github.com/user-attachments/assets/9da339a5-9a3b-45fc-b432-fb4a32485119)
-> `updateInterval` describes an update every specified amount of milliseconds\
+> `updateInterval` describes an update every specified amount of milliseconds.\
 > `prependSpaceForOBS` adds a space in front of title and author to compensate the spacing at the end of text elements.\
 ![prependSpaceForOBS](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/f4e7f163-a664-4c4d-abe5-fd32b89596f3)
-4. Run `start-chrome.bat` inside `/run/` first, `run-script.cmd` right after and follow the guide\
+4. Run `start-chrome.bat` inside `/run/` first, `run-script.cmd` right after and follow the guide.\
 ![1 2 0-batches](https://github.com/user-attachments/assets/417b7583-673c-49d7-af63-4a2a9f1b9c16)
 5. Open your broadcasting software and import the files of `/data/` as needed. Inside OBS, you can create an element by right clicking in sources and clicking on `add`. You may use `Text (GDI+)` for `title.txt` and `author.txt` and `Image` for `thumbnail.jpeg`.\
 ![1 0 0-elements](https://github.com/user-attachments/assets/608713b3-7678-43e6-97d7-248da837154c)\
