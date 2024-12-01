@@ -31,7 +31,7 @@ Saves title, author and thumbnail of YouTube videos using Chrome for stream over
 ![1 0 0-elements](https://github.com/user-attachments/assets/608713b3-7678-43e6-97d7-248da837154c)\
 After entering a unique name, you need to click on `Browse` and navigate to the downloaded code and `/data/` and select the file you desire.\
 ![1 0 0-unique](https://github.com/user-attachments/assets/c1358468-7ce6-4431-ac34-179ea438fe11)
-![1 1 0-thumbnail](https://github.com/user-attachments/assets/8b752b65-ba9c-4e79-ba9d-d406e36ecfa8)
+![1 1 0-storage](https://github.com/user-attachments/assets/a0b17162-0694-4c55-951b-9ed0db61b7f6)
 ![1 1 0-image](https://github.com/user-attachments/assets/c929af92-e6c6-45f3-89ce-d396a6aa7274)\
 Feel free to resize the elements as needed.
 > Please note, that text elements need to have `Read from file` checked first.\
