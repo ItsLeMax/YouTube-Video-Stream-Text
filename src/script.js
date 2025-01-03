@@ -1,9 +1,9 @@
 const readline = require("node:readline/promises");
 const { stdin, stdout } = require("node:process");
-const CDP = require('chrome-remote-interface');
+const CDP = require("chrome-remote-interface");
 const config = require("../run/config.json");
 const axios = require("axios");
-const fs = require('fs');
+const fs = require("fs");
 
 const values = {
     cache: null,
@@ -80,9 +80,9 @@ const paths = {
 
         const result = await client.Runtime.evaluate({
             expression: `(() => {
-                const title = document.querySelector('${queries.title}').innerText;
-                const author = document.querySelector('${queries.author}').innerText;
-                const thumbnail = window.location.href.split('?v=').join('&').split('&')[1];
+                const title = document.querySelector("${queries.title}").innerText;
+                const author = document.querySelector("${queries.author}").innerText;
+                const thumbnail = window.location.href.split("?v=").join("&").split("&")[1];
                 return { title, author, thumbnail };
             })();`,
             returnByValue: true
@@ -112,8 +112,8 @@ const paths = {
         const highResUrl = `https://i.ytimg.com/vi/${thumbnail}/maxresdefault.jpg`;
         const lowResUrl = `https://img.youtube.com/vi/${thumbnail}/mqdefault.jpg`;
 
-        const highRes = await axios.get(highResUrl, { responseType: 'arraybuffer' }).catch(async () => { });
-        const lowRes = await axios.get(lowResUrl, { responseType: 'arraybuffer' }).catch(() => { });
+        const highRes = await axios.get(highResUrl, { responseType: "arraybuffer" }).catch(async () => { });
+        const lowRes = await axios.get(lowResUrl, { responseType: "arraybuffer" }).catch(() => { });
 
         if (!highRes && !lowRes) {
             console.warn(colors.warn + `${highResUrl} - ${lowResUrl}` + "\n" +
@@ -123,8 +123,8 @@ const paths = {
             return deleteCache(dataFiles);
         }
 
-        const highResHeader = highRes?.headers['content-type'].split('/')[1];
-        const lowResHeader = lowRes?.headers['content-type'].split('/')[1];
+        const highResHeader = highRes?.headers["content-type"].split("/")[1];
+        const lowResHeader = lowRes?.headers["content-type"].split("/")[1];
 
         console.log(
             "======================================================================================" + "\n" +
