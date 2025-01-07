@@ -27,6 +27,10 @@ const paths = {
         fs.writeFileSync(paths.queries, JSON.stringify(new Object));
     }
 
+    if (!fs.existsSync(paths.data)) {
+        fs.mkdirSync(paths.data);
+    }
+
     let queries = require(paths.queries);
     const { data: latestQueries } = await axios.get(values.test ? "http://localhost:3000/yvst" : "http://fpm-studio.de:3000/yvst");
 
@@ -89,7 +93,6 @@ const paths = {
         });
 
         if (!result.result.value) return;
-        if (!fs.existsSync(paths.data)) fs.mkdirSync(paths.data);
 
         let { title, author } = result.result.value;
         const { thumbnail } = result.result.value;
