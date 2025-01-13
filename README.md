@@ -24,7 +24,7 @@ Saves title, author and thumbnail of YouTube videos using Chrome for stream over
 ![1 3 0-obs_prepend](https://github.com/user-attachments/assets/9da339a5-9a3b-45fc-b432-fb4a32485119)
 > `updateInterval` describes an update every specified amount of milliseconds.\
 > `prependSpaceForOBS` adds a space in front of title and author to compensate the spacing at the end of text elements.\
-![prependSpaceForOBS](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/f4e7f163-a664-4c4d-abe5-fd32b89596f3)
+![1 3 0-prependSpaceForOBS](https://github.com/ItsLeMax/YouTube-Video-Stream-Text/assets/80857459/f4e7f163-a664-4c4d-abe5-fd32b89596f3)
 4. Run `start-chrome.bat` inside `/run/` first, `run-script.cmd` right after and follow the guide.\
 ![1 2 0-batches](https://github.com/user-attachments/assets/417b7583-673c-49d7-af63-4a2a9f1b9c16)
 5. Open your broadcasting software and import the files of `/data/` as needed. Inside OBS, you can create an element by right clicking in sources and clicking on `add`. You may use `Text (GDI+)` for `title.txt` and `author.txt` and `Image` for `thumbnail.jpeg`.\
